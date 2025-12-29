@@ -22,8 +22,12 @@ h2 {
     color: var(--color-text);
 }
 
-h2 {
+h1 {
     font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
     text-decoration: underline;
     text-decoration-style: wavy;
     text-decoration-color: var(--color-accent);
@@ -45,7 +49,7 @@ a {
     clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
 }
 
-.hero h2 {
+.hero h1 {
     font-size: 4rem;
 }
 
@@ -690,6 +694,12 @@ footer {
 
 /* Mobile Media Queries */
 @media (max-width: 768px) {
+
+
+    h1 {
+        font-size: 2rem;
+    }
+
     /* Typography adjustments */
     h2 {
         font-size: 1.5rem;
@@ -721,6 +731,10 @@ footer {
         width: 100%;
         align-items: center;
         text-align: center;
+    }
+
+    .changing_text h2 {
+        color: var(--color-text) !important;
     }
 
     .logo {
@@ -817,6 +831,11 @@ footer {
 }
 
 @media (max-width: 480px) {
+
+    h1 {
+        font-size: 2rem;
+    }
+
     /* Further typography adjustments for small phones */
     h2 {
         font-size: 1.3rem;
