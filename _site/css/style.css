@@ -64,7 +64,7 @@ a {
 }
 
 .changing_text h2 {
-    color: var(--color-bg);
+    color: var(--color-bg) !important;
 }
 
 * {
