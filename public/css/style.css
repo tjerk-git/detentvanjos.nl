@@ -1,6 +1,6 @@
 :root {
     /* 60% - Dominant color */
-    --color-bg: #E6E1D4;
+    --color-bg: #ddd8cb;
     /* 30% - Secondary color */
     --color-primary: #4BB653;
     /* 10% - Accent color */
@@ -45,12 +45,12 @@ a {
     background-color: var(--color-accent);
     color: var(--color-bg);
     padding: 1rem;
-    height: 30dvh;
+    height: 16dvh;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 2.5rem;
 }
 
 .changing_text {
@@ -64,7 +64,7 @@ a {
 }
 
 .changing_text h2 {
-    color: var(--color-bg) !important;
+    color: var(--color-text) !important;
 }
 
 * {
@@ -334,7 +334,7 @@ a {
 
 /* Footer */
 footer {
-    background: #dc5c00;
+    background: #ff8834;
     color: white;
     padding: 4rem 2rem 2rem;
 }
@@ -507,7 +507,7 @@ footer {
 /* Contact Section */
 #contact {
     padding: 6rem 1rem;
-    background: linear-gradient(180deg, #CC5500 0%, #dc5c00 100%);
+    background: linear-gradient(180deg, var(--color-accent) 0%, #ff8834 100%);
     color: var(--color-bg);
     text-align: center;
 }
