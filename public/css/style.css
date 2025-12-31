@@ -44,7 +44,7 @@ a {
 .hero {
     background-color: var(--color-accent);
     color: var(--color-bg);
-    padding: 1rem;
+    padding: 3rem 2rem;
     height: 16dvh;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
 }
@@ -75,7 +75,7 @@ a {
 
 .logo {
     width: 100%;
-    max-width: 26rem;
+    max-width: 21rem;
 }
 
 .hero_content {
@@ -85,6 +85,8 @@ a {
     justify-content: center;
     height: 100%;
     gap: 5rem;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 /* Polaroids Section */
@@ -111,12 +113,14 @@ a {
     scroll-behavior: smooth;
     padding: 2rem 1rem;
     width: 100%;
+    max-width: 1400px;
     scrollbar-width: none;
     /* Firefox */
     -ms-overflow-style: none;
     /* IE/Edge */
     align-items: center;
     /* Center items vertically if heights differ slightly */
+    margin: 0 auto;
 }
 
 .polaroid-container::-webkit-scrollbar {
@@ -513,7 +517,7 @@ footer {
 }
 
 .contact-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
 }
 
@@ -580,8 +584,9 @@ footer {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    max-width: 800px;
+    max-width: 900px;
     width: 100%;
+    margin: 0 auto;
 }
 
 .checklist-item {
@@ -697,7 +702,7 @@ footer {
 
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     /* Typography adjustments */
@@ -714,11 +719,15 @@ footer {
     .hero {
         height: auto;
         min-height: 40dvh;
-        padding: 2rem 1rem;
+        padding: 3rem 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 1.75rem;
     }
 
     .hero h2 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     .hero_content {
@@ -833,7 +842,7 @@ footer {
 @media (max-width: 480px) {
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
     }
 
     /* Further typography adjustments for small phones */
@@ -845,13 +854,17 @@ footer {
         font-size: 1rem;
     }
 
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
     .hero h2 {
-        font-size: 1.6rem;
+        font-size: 1.3rem;
     }
 
     /* Hero section */
     .hero {
-        padding: 1.5rem 1rem;
+        padding: 2.5rem 1rem;
     }
 
     .hero_content {
