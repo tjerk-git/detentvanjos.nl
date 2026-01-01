@@ -45,7 +45,7 @@ a {
     background-color: var(--color-accent);
     color: var(--color-bg);
     padding: 3rem 2rem;
-    height: 16dvh;
+    height: 20dvh;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
 }
 
