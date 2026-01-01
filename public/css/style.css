@@ -638,10 +638,6 @@ footer {
     transition: box-shadow 0.3s ease;
 }
 
-.checklist-item:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
 .checklist-item[open] {
     border-left-color: var(--color-accent);
 }
@@ -758,7 +754,7 @@ footer {
     /* Hero section */
     .hero {
         height: auto;
-        min-height: 40dvh;
+        min-height: 45dvh;
         padding: 3rem 1.5rem;
     }
 
