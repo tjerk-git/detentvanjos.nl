@@ -8,6 +8,7 @@
     --color-secondary: #007AFF;
     --font-header: 'baga', sans-serif;
     --color-text: #231F20;
+    --color-text-accent: #585858;
 }
 
 body {
@@ -45,7 +46,7 @@ a {
     background-color: var(--color-accent);
     color: var(--color-bg);
     padding: 3rem 2rem;
-    height: 20dvh;
+    height: 25dvh;
     clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
 }
 
@@ -75,7 +76,7 @@ a {
 
 .logo {
     width: 100%;
-    max-width: 21rem;
+    max-width: 17rem;
 }
 
 .hero_content {
@@ -110,6 +111,7 @@ a {
     display: flex;
     gap: 2rem;
     overflow-x: auto;
+    scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     padding: 2rem 1rem;
     width: 100%;
@@ -139,6 +141,7 @@ a {
     max-width: 350px;
     width: 300px;
     /* Fixed width for better carousel feel */
+    scroll-snap-align: center;
 }
 
 .polaroid:nth-child(even) {
@@ -286,7 +289,7 @@ a {
     font-size: 1.5rem;
     padding: 1rem;
     margin: 0;
-    color: var(--color-primary);
+    color: var(--color-text-accent);
 }
 
 .hidden-content {
@@ -338,7 +341,7 @@ a {
 
 /* Footer */
 footer {
-    background: #ff8834;
+    background: var(--color-primary);
     color: white;
     padding: 4rem 2rem 2rem;
 }
@@ -511,62 +514,99 @@ footer {
 /* Contact Section */
 #contact {
     padding: 6rem 1rem;
-    background: linear-gradient(180deg, var(--color-accent) 0%, #ff8834 100%);
-    color: var(--color-bg);
+    background-color: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-flyer {
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    transform: rotate(-1deg);
+}
+
+.flyer-body {
+    padding: 3rem 2rem 4rem;
     text-align: center;
 }
 
-.contact-container {
-    max-width: 1000px;
-    margin: 0 auto;
+.flyer-body h2 {
+    margin-bottom: 1rem;
+    text-decoration: none;
 }
 
-.contact-container h2 {
+.flyer-body p {
     font-family: var(--font-header);
-    color: var(--color-bg);
-    margin-bottom: 3rem;
+    font-size: 1.2rem;
+    color: #666;
 }
 
-.contact-grid {
+.flyer-strips {
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
+    justify-content: space-around;
+    border-top: 2px dashed #ddd;
+    background: #fff;
 }
 
-.contact-item {
+.strip {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    padding: 2rem 0.5rem;
     text-decoration: none;
-    color: var(--color-bg);
+    color: #333;
+    border-left: 1.5px dashed #eee;
+    transition: all 0.3s ease;
+    transform-origin: top;
+}
+
+.strip:first-child {
+    border-left: none;
+}
+
+.strip span {
     font-family: var(--font-header);
     font-size: 1.1rem;
-    gap: 0.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 0;
-    width: 140px;
-    height: 140px;
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: var(--color-primary);
+    margin-top: 0.5rem;
+    letter-spacing: 0.5px;
+    text-align: center;
 }
 
-.contact-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
-
-.contact-item svg {
-    width: 40px;
-    height: 40px;
-    fill: var(--color-bg);
+.strip svg {
+    width: 24px;
+    height: 24px;
+    fill: #333;
     transition: transform 0.3s ease;
 }
 
-.contact-item:hover svg {
-    transform: scale(1.1);
+.strip:hover {
+    background-color: #fdfdfd;
+    transform: translateY(5px) rotate(2deg);
+    color: var(--color-accent);
+}
+
+.strip:hover svg {
+    transform: scale(1.2);
+    fill: var(--color-accent);
+}
+
+/* Torn paper effect on mobile */
+@media (max-width: 480px) {
+    .contact-flyer {
+        max-width: 100%;
+    }
+
+    .strip span {
+        font-size: 1rem;
+    }
 }
 
 /* Specific Colors - Removed for Tuscany Uniformity */
@@ -591,7 +631,7 @@ footer {
 
 .checklist-item {
     background: white;
-    border-left: 5px solid var(--color-primary);
+    border-left: 5px solid var(--color-accent);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     border-radius: 4px;
     overflow: hidden;
@@ -615,7 +655,7 @@ footer {
     align-items: center;
     font-family: var(--font-header);
     font-size: 1.25rem;
-    color: var(--color-primary);
+    color: var(--color-accent);
     transition: background-color 0.2s, color 0.2s;
 }
 

@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
         'teamuitje,',
         'festival,',
         'familiedag,',
-        'liefdesceremonie,',
         'buurtfeestje,',
         'kerkdienst,'
     ];
@@ -67,12 +66,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.querySelector('.nav-button.next');
 
     if (container && prevBtn && nextBtn) {
+        const getScrollAmount = () => {
+            const firstPolaroid = container.querySelector('.polaroid');
+            if (firstPolaroid) {
+                const width = firstPolaroid.offsetWidth;
+                const style = window.getComputedStyle(container);
+                const gap = parseInt(style.columnGap) || parseInt(style.gap) || 0;
+                return width + gap;
+            }
+            return 350; // Fallback
+        };
+
         prevBtn.addEventListener('click', () => {
-            container.scrollBy({ left: -350, behavior: 'smooth' });
+            container.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
         });
 
         nextBtn.addEventListener('click', () => {
-            container.scrollBy({ left: 350, behavior: 'smooth' });
+            container.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
         });
     }
 
