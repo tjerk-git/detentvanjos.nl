@@ -109,6 +109,7 @@ a {
 }
 
 .changing_text h1 #changing-text {
+    display: block;
     text-decoration: underline;
     text-decoration-style: wavy;
     text-decoration-color: var(--color-accent);
@@ -976,7 +977,7 @@ footer {
     }
 
     .hero h2 {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
     }
 
     .hero_content {

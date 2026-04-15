@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const words = [
-        'huwelijk,',
-        'teamuitje,',
-        'festival,',
-        'familiedag,',
-        'buurtfeestje,',
-        'kerkdienst,'
+        'huwelijk',
+        'teamuitje',
+        'festival',
+        'familiedag',
+        'buurtfeestje',
+        'kerkdienst'
     ];
 
     const changingText = document.getElementById('changing-text');
