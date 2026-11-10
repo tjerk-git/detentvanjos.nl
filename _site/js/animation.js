@@ -1,64 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
     const words = [
-        'huwelijk,',
-        'teamuitje,',
-        'festival,',
-        'familiedag,',
-        'buurtfeestje,',
-        'kerkdienst,'
+        'huwelijk',
+        'teamuitje',
+        'festival',
+        'familiedag',
+        'buurtfeestje',
+        'kerkdienst'
     ];
 
     const changingText = document.getElementById('changing-text');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let currentIndex = 0;
 
-    // Function to split text into spans
-    const splitText = (element) => {
-        const text = element.innerText;
-        element.innerHTML = text
-            .split('')
-            .map(char => `<span style="display:inline-block">${char === ' ' ? '&nbsp;' : char}</span>`)
-            .join('');
-        return element.querySelectorAll('span');
-    };
-
-    // Initial split
-    let chars = splitText(changingText);
-
-    const animateText = () => {
-        const tl = gsap.timeline();
-
-        // Animate out
-        tl.to(chars, {
-            duration: 0.5,
-            y: -20,
-            opacity: 0,
-            stagger: 0.05,
-            ease: "power2.in",
-            onComplete: () => {
-                // Change text
-                currentIndex = (currentIndex + 1) % words.length;
-                changingText.innerText = words[currentIndex];
-
-                // Re-split new text
-                chars = splitText(changingText);
-
-                // Set initial state for animation in
-                gsap.set(chars, { y: 20, opacity: 0 });
-
-                // Animate in
-                gsap.to(chars, {
-                    duration: 0.5,
-                    y: 0,
-                    opacity: 1,
-                    stagger: 0.05,
-                    ease: "back.out(1.7)"
-                });
-            }
+    const splitText = (text) => {
+        changingText.textContent = '';
+        return Array.from(text).map(char => {
+            const span = document.createElement('span');
+            span.style.display = 'inline-block';
+            span.textContent = char === ' ' ? '\u00a0' : char;
+            changingText.appendChild(span);
+            return span;
         });
     };
 
-    // Start animation loop every 3 seconds
-    setInterval(animateText, 3000);
+    const animateChars = (chars, keyframes, options) =>
+        Promise.all(chars.map((el, i) =>
+            el.animate(keyframes, { ...options, delay: i * 50, fill: 'both' }).finished
+        ));
+
+    const swapWord = async () => {
+        if (reduceMotion.matches || document.hidden) return;
+        const out = Array.from(changingText.children);
+        await animateChars(out, [
+            { transform: 'translateY(0)', opacity: 1 },
+            { transform: 'translateY(-20px)', opacity: 0 }
+        ], { duration: 500, easing: 'ease-in' });
+
+        currentIndex = (currentIndex + 1) % words.length;
+        changingText.setAttribute('aria-label', words[currentIndex]);
+        const chars = splitText(words[currentIndex]);
+        await animateChars(chars, [
+            { transform: 'translateY(20px)', opacity: 0 },
+            { transform: 'translateY(0)', opacity: 1 }
+        ], { duration: 500, easing: 'cubic-bezier(0.34, 1.56, 0.64, 1)' });
+    };
+
+    splitText(changingText.textContent);
+    setInterval(swapWord, 3000);
 
     // Carousel Logic
     const container = document.querySelector('.polaroid-container');
@@ -99,11 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const openModal = () => {
             modal.classList.add('is-open');
             modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            const closeBtn = modal.querySelector('.modal__close');
+            if (closeBtn) closeBtn.focus();
         };
 
         const closeModal = () => {
             modal.classList.remove('is-open');
             modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+            trigger.focus();
         };
 
         trigger.addEventListener('click', (e) => {

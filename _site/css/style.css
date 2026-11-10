@@ -43,16 +43,22 @@ a {
 
 /* Header */
 .site-header {
+    position: relative;
+    z-index: 2;
     background-color: var(--color-accent);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 1.25rem 2rem;
+    height: 88px;
 }
 
 .logo {
-    height: 180px;
+    position: absolute;
+    top: 8px;
+    height: 170px;
     width: auto;
+    transform: rotate(-3deg);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
 }
 
 /* Hero */
@@ -137,7 +143,7 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4rem 1rem;
+    padding: 4rem 1rem 0;
     background-color: var(--color-bg);
     background-image: url("../img/lights.png");
     background-repeat: repeat-x;
@@ -145,6 +151,22 @@ a {
     background-blend-mode: soft-light;
     overflow: hidden;
     /* Hide overflow from buttons if needed */
+}
+
+/* Same string lights at the bottom, flipped so the bulbs point up */
+.polaroids::after {
+    content: "";
+    flex: none;
+    width: calc(100% + 2rem);
+    height: 115px;
+    margin: -5.5rem -1rem 0;
+    background-color: var(--color-bg);
+    background-image: url("../img/lights.png");
+    background-repeat: repeat-x;
+    background-position: top center;
+    background-blend-mode: soft-light;
+    transform: scaleY(-1);
+    pointer-events: none;
 }
 
 .polaroid-container {
@@ -193,6 +215,8 @@ a {
 }
 
 .polaroid-nav-container {
+    position: relative;
+    z-index: 1;
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
@@ -289,6 +313,12 @@ a {
 }
 
 .option-item {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    color: inherit;
     background: white;
     border-radius: 8px;
     overflow: hidden;
@@ -306,6 +336,7 @@ a {
 }
 
 .option-image {
+    display: block;
     width: 100%;
     aspect-ratio: 4/3;
     overflow: hidden;
@@ -322,7 +353,8 @@ a {
     transform: scale(1.1);
 }
 
-.option-item h3 {
+.option-item .option-title {
+    display: block;
     font-family: var(--font-header);
     font-size: 1.5rem;
     padding: 1rem;
@@ -709,6 +741,8 @@ footer {
     line-height: 1.7;
     color: #444;
     font-size: 1rem;
+    max-width: 55ch;
+    text-wrap: pretty;
     text-align: left;
     /* Explicitly align left */
 }
@@ -925,12 +959,23 @@ footer {
 .checklist-item .content {
     padding: 1.5rem;
     line-height: 1.6;
+    max-width: 62ch;
+    text-wrap: pretty;
     color: #555;
     animation: fadeIn 0.3s ease-in-out;
 }
 
 .checklist-item .content p {
     margin-bottom: 1rem;
+}
+
+.checklist-item .content ul {
+    margin-bottom: 1rem;
+    padding-left: 1.25rem;
+}
+
+.checklist-item .content li + li {
+    margin-top: 0.4rem;
 }
 
 .checklist-item .content p:last-child {
@@ -996,13 +1041,17 @@ footer {
         color: #ffffff !important;
     }
 
+    .site-header {
+        height: 64px;
+    }
+
     .logo {
-        max-width: 16rem;
+        height: 130px;
     }
 
     /* Polaroids section */
     .polaroids {
-        padding: 2rem 1rem;
+        padding: 2rem 1rem 0;
     }
 
     .polaroid {
@@ -1121,7 +1170,7 @@ footer {
     }
 
     .logo {
-        max-width: 12rem;
+        height: 110px;
     }
 
     /* Polaroids */
@@ -1175,5 +1224,21 @@ footer {
 
     .modal__text {
         font-size: 0.95rem;
+    }
+}
+
+/* Keyboard focus */
+:focus-visible {
+    outline: 3px solid var(--color-text);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
     }
 }
